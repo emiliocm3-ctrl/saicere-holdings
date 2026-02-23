@@ -1,0 +1,8 @@
+# Ignore everything by default (workspace contains sensitive financial/legal docs)
+*
+
+# Only track the landing page and config
+!index.html
+!.gitignore
+!.vercel
+!.vercel/**

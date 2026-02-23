@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saicere Holdings</title>
+  <meta name="description" content="Saicere Holdings — Investing, building, and scaling what's next.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #09090b;
+      --bg-elevated: #131316;
+      --border: #1e1e22;
+      --text: #f0f0f0;
+      --text-muted: #8a8a8e;
+      --accent: #c9a84c;
+      --accent-dim: rgba(201, 168, 76, 0.12);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* --- Language Toggle --- */
+    .lang-toggle {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 100;
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--bg-elevated);
+    }
+
+    .lang-toggle button {
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.85rem;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.25s, background 0.25s;
+    }
+
+    .lang-toggle button.active {
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .lang-toggle button:hover:not(.active) {
+      color: var(--text);
+    }
+
+    /* --- Sections --- */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* --- Hero --- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero .tagline {
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 560px;
+    }
+
+    .hero .scroll-hint {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    .hero .scroll-hint svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-muted);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
+      50% { opacity: 0.6; transform: translateX(-50%) translateY(4px); }
+    }
+
+    /* --- About --- */
+    .about {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .about p {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 700px;
+      line-height: 1.75;
+    }
+
+    /* --- Divider --- */
+    .divider {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .divider hr {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* --- Pillars --- */
+    .pillars {
+      padding-top: 8rem;
+      padding-bottom: 10rem;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .pillar {
+      padding: 2.25rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-elevated);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .pillar:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--accent-dim);
+      margin-bottom: 1.5rem;
+    }
+
+    .pillar-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .pillar h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .pillar p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* --- Footer --- */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* --- Scroll Animations --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .pillars-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .hero {
+        min-height: 85vh;
+      }
+
+      .about, .pillars {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
+
+      .lang-toggle {
+        top: 1.25rem;
+        right: 1.25rem;
+      }
+
+      section {
+        padding: 0 1.25rem;
+      }
+
+      .divider {
+        padding: 0 1.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Language Toggle -->
+  <nav class="lang-toggle" aria-label="Language selector">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-es" onclick="setLang('es')">ES</button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1 class="reveal">Saicere Holdings</h1>
+    <p class="tagline reveal reveal-delay-1" data-i18n="hero.tagline">Investing, building, and scaling what's next.</p>
+    <div class="scroll-hint" data-i18n="hero.scroll" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about">
+    <div class="section-label reveal" data-i18n="about.label">About</div>
+    <p class="reveal reveal-delay-1" data-i18n="about.text">Saicere Holdings is a holding company that deploys capital into high-potential startups, actively manages a diversified portfolio of businesses, and operates as a venture lab — incubating digital-first, automation-driven companies from concept to scale. We partner with founders and teams building what's next.</p>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- Pillars -->
+  <section class="pillars">
+    <div class="section-label reveal" data-i18n="pillars.label">What We Do</div>
+    <div class="pillars-grid">
+
+      <!-- Investments -->
+      <div class="pillar reveal reveal-delay-1">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3 data-i18n="pillars.invest.title">Investments</h3>
+        <p data-i18n="pillars.invest.desc">Early-stage and growth capital for high-potential startups. We back ambitious founders solving meaningful problems with scalable technology.</p>
+      </div>
+
+      <!-- Portfolio Management -->
+      <div class="pillar reveal reveal-delay-2">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <h3 data-i18n="pillars.manage.title">Portfolio Management</h3>
+        <p data-i18n="pillars.manage.desc">Active oversight and strategic support for our portfolio companies. We provide operational guidance, network access, and long-term alignment to maximize value creation.</p>
+      </div>
+
+      <!-- Venture Lab -->
+      <div class="pillar reveal reveal-delay-3">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0-4h18"/>
+          </svg>
+        </div>
+        <h3 data-i18n="pillars.lab.title">Venture Lab</h3>
+        <p data-i18n="pillars.lab.desc">Incubating digital-first, automation-driven businesses from concept to launch. We identify opportunities, build products, and scale operations — turning ideas into companies.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span data-i18n="footer">&copy; 2026 Saicere Holdings. All rights reserved.</span>
+  </footer>
+
+  <script>
+    const i18n = {
+      en: {
+        'hero.tagline': 'Investing, building, and scaling what\u2019s next.',
+        'hero.scroll': '',
+        'about.label': 'About',
+        'about.text': 'Saicere Holdings is a holding company that deploys capital into high-potential startups, actively manages a diversified portfolio of businesses, and operates as a venture lab \u2014 incubating digital-first, automation-driven companies from concept to scale. We partner with founders and teams building what\u2019s next.',
+        'pillars.label': 'What We Do',
+        'pillars.invest.title': 'Investments',
+        'pillars.invest.desc': 'Early-stage and growth capital for high-potential startups. We back ambitious founders solving meaningful problems with scalable technology.',
+        'pillars.manage.title': 'Portfolio Management',
+        'pillars.manage.desc': 'Active oversight and strategic support for our portfolio companies. We provide operational guidance, network access, and long-term alignment to maximize value creation.',
+        'pillars.lab.title': 'Venture Lab',
+        'pillars.lab.desc': 'Incubating digital-first, automation-driven businesses from concept to launch. We identify opportunities, build products, and scale operations \u2014 turning ideas into companies.',
+        'footer': '\u00a9 2026 Saicere Holdings. All rights reserved.'
+      },
+      es: {
+        'hero.tagline': 'Invirtiendo, construyendo y escalando lo que sigue.',
+        'hero.scroll': '',
+        'about.label': 'Nosotros',
+        'about.text': 'Saicere Holdings es una empresa tenedora que despliega capital en startups de alto potencial, gestiona activamente un portafolio diversificado de negocios y opera como laboratorio de ventures \u2014 incubando empresas digitales y automatizadas desde el concepto hasta la escala. Nos asociamos con fundadores y equipos que construyen lo que sigue.',
+        'pillars.label': 'Lo Que Hacemos',
+        'pillars.invest.title': 'Inversiones',
+        'pillars.invest.desc': 'Capital semilla y de crecimiento para startups de alto potencial. Respaldamos fundadores ambiciosos que resuelven problemas significativos con tecnolog\u00eda escalable.',
+        'pillars.manage.title': 'Gesti\u00f3n de Portafolio',
+        'pillars.manage.desc': 'Supervisi\u00f3n activa y apoyo estrat\u00e9gico para nuestras empresas de portafolio. Brindamos gu\u00eda operativa, acceso a redes y alineaci\u00f3n a largo plazo para maximizar la creaci\u00f3n de valor.',
+        'pillars.lab.title': 'Laboratorio de Ventures',
+        'pillars.lab.desc': 'Incubando negocios digitales y automatizados desde el concepto hasta el lanzamiento. Identificamos oportunidades, construimos productos y escalamos operaciones \u2014 convirtiendo ideas en empresas.',
+        'footer': '\u00a9 2026 Saicere Holdings. Todos los derechos reservados.'
+      }
+    };
+
+    function setLang(lang) {
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang);
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key] !== undefined) {
+          el.innerHTML = i18n[lang][key];
+        }
+      });
+
+      try { localStorage.setItem('saicere-lang', lang); } catch (e) {}
+    }
+
+    (function initLang() {
+      let saved;
+      try { saved = localStorage.getItem('saicere-lang'); } catch (e) {}
+      if (saved === 'es') setLang('es');
+    })();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
