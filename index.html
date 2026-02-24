@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Saicere Holdings</title>
-  <meta name="description" content="Saicere Holdings — Investing, building, and scaling what's next.">
+  <meta name="description" content="Saicere Holdings — To relentlessly pursue value creation and act as a catalyst for improvement.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,11 +18,15 @@
     :root {
       --bg: #09090b;
       --bg-elevated: #131316;
+      --bg-card: #0f0f12;
       --border: #1e1e22;
+      --border-subtle: #16161a;
       --text: #f0f0f0;
       --text-muted: #8a8a8e;
+      --text-dim: #5a5a5e;
       --accent: #c9a84c;
       --accent-dim: rgba(201, 168, 76, 0.12);
+      --accent-glow: rgba(201, 168, 76, 0.06);
     }
 
     html {
@@ -47,7 +51,6 @@
       right: 2rem;
       z-index: 100;
       display: flex;
-      gap: 0;
       border: 1px solid var(--border);
       border-radius: 6px;
       overflow: hidden;
@@ -84,6 +87,26 @@
       padding: 0 2rem;
     }
 
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .divider {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .divider hr {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
     /* --- Hero --- */
     .hero {
       min-height: 100vh;
@@ -109,14 +132,15 @@
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.05;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
-    .hero .tagline {
-      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    .hero .mission {
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
       font-weight: 300;
       color: var(--text-muted);
-      max-width: 560px;
+      max-width: 600px;
+      line-height: 1.55;
     }
 
     .hero .scroll-hint {
@@ -153,39 +177,48 @@
       padding-bottom: 8rem;
     }
 
-    .section-label {
-      font-size: 0.7rem;
+    .about-content {
+      max-width: 720px;
+    }
+
+    .about p {
+      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .about p:last-child {
+      margin-bottom: 0;
+    }
+
+    .vision-block {
+      border-left: 2px solid var(--accent);
+      padding-left: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .vision-label {
+      font-size: 0.65rem;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 2rem;
+      margin-bottom: 0.5rem;
     }
 
-    .about p {
-      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-      font-weight: 300;
+    .vision-block p {
+      font-size: clamp(1rem, 1.6vw, 1.1rem);
+      font-style: italic;
       color: var(--text-muted);
-      max-width: 700px;
-      line-height: 1.75;
-    }
-
-    /* --- Divider --- */
-    .divider {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .divider hr {
-      border: none;
-      border-top: 1px solid var(--border);
+      margin-bottom: 0;
     }
 
     /* --- Pillars --- */
     .pillars {
       padding-top: 8rem;
-      padding-bottom: 10rem;
+      padding-bottom: 8rem;
     }
 
     .pillars-grid {
@@ -243,6 +276,65 @@
       line-height: 1.65;
     }
 
+    /* --- Values --- */
+    .values {
+      padding-top: 8rem;
+      padding-bottom: 10rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .value-card {
+      padding: 2.25rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      background: var(--bg-card);
+      transition: border-color 0.3s;
+    }
+
+    .value-card:hover {
+      border-color: var(--border);
+    }
+
+    .value-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .value-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .value-card li {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.55;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .value-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--text-dim);
+    }
+
     /* --- Footer --- */
     footer {
       border-top: 1px solid var(--border);
@@ -269,6 +361,7 @@
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
 
     /* --- Responsive --- */
     @media (max-width: 768px) {
@@ -277,11 +370,16 @@
         gap: 1.5rem;
       }
 
+      .values-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
       .hero {
         min-height: 85vh;
       }
 
-      .about, .pillars {
+      .about, .pillars, .values {
         padding-top: 5rem;
         padding-bottom: 5rem;
       }
@@ -291,12 +389,9 @@
         right: 1.25rem;
       }
 
-      section {
-        padding: 0 1.25rem;
-      }
-
-      .divider {
-        padding: 0 1.25rem;
+      section, .divider {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
       }
     }
 
@@ -318,8 +413,8 @@
   <!-- Hero -->
   <section class="hero">
     <h1 class="reveal">Saicere Holdings</h1>
-    <p class="tagline reveal reveal-delay-1" data-i18n="hero.tagline">Investing, building, and scaling what's next.</p>
-    <div class="scroll-hint" data-i18n="hero.scroll" aria-hidden="true">
+    <p class="mission reveal reveal-delay-1" data-i18n="hero.mission">To relentlessly pursue value creation and act as a catalyst for improvement.</p>
+    <div class="scroll-hint" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M12 5v14M5 12l7 7 7-7"/>
       </svg>
@@ -329,7 +424,13 @@
   <!-- About -->
   <section class="about">
     <div class="section-label reveal" data-i18n="about.label">About</div>
-    <p class="reveal reveal-delay-1" data-i18n="about.text">Saicere Holdings is a holding company that deploys capital into high-potential startups, actively manages a diversified portfolio of businesses, and operates as a venture lab — incubating digital-first, automation-driven companies from concept to scale. We partner with founders and teams building what's next.</p>
+    <div class="about-content">
+      <p class="reveal reveal-delay-1" data-i18n="about.text">Saicere Holdings deploys capital across venture capital, real estate, and debt — actively managing a diversified portfolio while operating a venture lab that creates and tests tools, products, and digital businesses from the ground up.</p>
+      <div class="vision-block reveal reveal-delay-2">
+        <div class="vision-label" data-i18n="about.vision.label">Vision</div>
+        <p data-i18n="about.vision.text">Autonomous infrastructure that enables the pursuit of curiosity and innovation.</p>
+      </div>
+    </div>
   </section>
 
   <div class="divider"><hr></div>
@@ -349,7 +450,7 @@
           </svg>
         </div>
         <h3 data-i18n="pillars.invest.title">Investments</h3>
-        <p data-i18n="pillars.invest.desc">Early-stage and growth capital for high-potential startups. We back ambitious founders solving meaningful problems with scalable technology.</p>
+        <p data-i18n="pillars.invest.desc">Capital deployed across venture capital, real estate, and debt. We pursue asymmetric opportunities with a long-term, value-driven approach.</p>
       </div>
 
       <!-- Portfolio Management -->
@@ -360,7 +461,7 @@
           </svg>
         </div>
         <h3 data-i18n="pillars.manage.title">Portfolio Management</h3>
-        <p data-i18n="pillars.manage.desc">Active oversight and strategic support for our portfolio companies. We provide operational guidance, network access, and long-term alignment to maximize value creation.</p>
+        <p data-i18n="pillars.manage.desc">Active oversight and strategic support across all holdings. We provide operational guidance, network access, and long-term alignment to maximize value creation.</p>
       </div>
 
       <!-- Venture Lab -->
@@ -371,7 +472,64 @@
           </svg>
         </div>
         <h3 data-i18n="pillars.lab.title">Venture Lab</h3>
-        <p data-i18n="pillars.lab.desc">Incubating digital-first, automation-driven businesses from concept to launch. We identify opportunities, build products, and scale operations — turning ideas into companies.</p>
+        <p data-i18n="pillars.lab.desc">Creating and testing tools, products, and digital businesses. We identify opportunities, build automation-first solutions, and scale operations from concept to launch.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- Values -->
+  <section class="values">
+    <div class="section-label reveal" data-i18n="values.label">Our Values</div>
+    <div class="values-grid">
+
+      <!-- Purpose & Congruence -->
+      <div class="value-card reveal reveal-delay-1">
+        <h3 data-i18n="values.purpose.title">Purpose &amp; Congruence</h3>
+        <ul>
+          <li data-i18n="values.purpose.1">Purpose is our shared direction and decision-making criterion.</li>
+          <li data-i18n="values.purpose.2">We evaluate whether our actions move us closer to or further from the common goal.</li>
+          <li data-i18n="values.purpose.3">Congruence is coherence between our values, words, and actions.</li>
+          <li data-i18n="values.purpose.4">Efficiency without purpose breeds apathy.</li>
+          <li data-i18n="values.purpose.5">We don't believe in the deferred life plan — we build an aligned life starting today.</li>
+        </ul>
+      </div>
+
+      <!-- Collaboration & Connection -->
+      <div class="value-card reveal reveal-delay-2">
+        <h3 data-i18n="values.collab.title">Collaboration &amp; Connection</h3>
+        <ul>
+          <li data-i18n="values.collab.1">We collaborate not out of obligation, but from a shared vision.</li>
+          <li data-i18n="values.collab.2">Openness and leaving ego at the door are essential.</li>
+          <li data-i18n="values.collab.3">We value empathy, positive attitude, and cultural alignment.</li>
+          <li data-i18n="values.collab.4">Ego, closed-mindedness, and lack of emotional intelligence disconnect us.</li>
+          <li data-i18n="values.collab.5">Our contribution is direction, perspective, and reflection.</li>
+        </ul>
+      </div>
+
+      <!-- Curiosity & Innovation -->
+      <div class="value-card reveal reveal-delay-3">
+        <h3 data-i18n="values.curiosity.title">Curiosity &amp; Innovation</h3>
+        <ul>
+          <li data-i18n="values.curiosity.1">Intellectual and creative curiosity drives us.</li>
+          <li data-i18n="values.curiosity.2">Learning matters more than being right.</li>
+          <li data-i18n="values.curiosity.3">Innovation means creating more value — improving or building something new.</li>
+          <li data-i18n="values.curiosity.4">We think in spectrums, not binary answers.</li>
+          <li data-i18n="values.curiosity.5">Our mental framework: Why &rarr; What if &rarr; How.</li>
+        </ul>
+      </div>
+
+      <!-- Ambition & Freedom -->
+      <div class="value-card reveal reveal-delay-4">
+        <h3 data-i18n="values.ambition.title">Ambition &amp; Freedom</h3>
+        <ul>
+          <li data-i18n="values.ambition.1">Ambition means moving forward and refusing to settle.</li>
+          <li data-i18n="values.ambition.2">Freedom is the ability to decide how we use our time and energy.</li>
+          <li data-i18n="values.ambition.3">Freedom has limits — it must not negatively affect others.</li>
+          <li data-i18n="values.ambition.4">We pursue growth aligned with our shared vision.</li>
+        </ul>
       </div>
 
     </div>
@@ -385,31 +543,81 @@
   <script>
     const i18n = {
       en: {
-        'hero.tagline': 'Investing, building, and scaling what\u2019s next.',
-        'hero.scroll': '',
+        'hero.mission': 'To relentlessly pursue value creation and act as a catalyst for improvement.',
         'about.label': 'About',
-        'about.text': 'Saicere Holdings is a holding company that deploys capital into high-potential startups, actively manages a diversified portfolio of businesses, and operates as a venture lab \u2014 incubating digital-first, automation-driven companies from concept to scale. We partner with founders and teams building what\u2019s next.',
+        'about.text': 'Saicere Holdings deploys capital across venture capital, real estate, and debt \u2014 actively managing a diversified portfolio while operating a venture lab that creates and tests tools, products, and digital businesses from the ground up.',
+        'about.vision.label': 'Vision',
+        'about.vision.text': 'Autonomous infrastructure that enables the pursuit of curiosity and innovation.',
         'pillars.label': 'What We Do',
         'pillars.invest.title': 'Investments',
-        'pillars.invest.desc': 'Early-stage and growth capital for high-potential startups. We back ambitious founders solving meaningful problems with scalable technology.',
+        'pillars.invest.desc': 'Capital deployed across venture capital, real estate, and debt. We pursue asymmetric opportunities with a long-term, value-driven approach.',
         'pillars.manage.title': 'Portfolio Management',
-        'pillars.manage.desc': 'Active oversight and strategic support for our portfolio companies. We provide operational guidance, network access, and long-term alignment to maximize value creation.',
+        'pillars.manage.desc': 'Active oversight and strategic support across all holdings. We provide operational guidance, network access, and long-term alignment to maximize value creation.',
         'pillars.lab.title': 'Venture Lab',
-        'pillars.lab.desc': 'Incubating digital-first, automation-driven businesses from concept to launch. We identify opportunities, build products, and scale operations \u2014 turning ideas into companies.',
+        'pillars.lab.desc': 'Creating and testing tools, products, and digital businesses. We identify opportunities, build automation-first solutions, and scale operations from concept to launch.',
+        'values.label': 'Our Values',
+        'values.purpose.title': 'Purpose & Congruence',
+        'values.purpose.1': 'Purpose is our shared direction and decision-making criterion.',
+        'values.purpose.2': 'We evaluate whether our actions move us closer to or further from the common goal.',
+        'values.purpose.3': 'Congruence is coherence between our values, words, and actions.',
+        'values.purpose.4': 'Efficiency without purpose breeds apathy.',
+        'values.purpose.5': 'We don\u2019t believe in the deferred life plan \u2014 we build an aligned life starting today.',
+        'values.collab.title': 'Collaboration & Connection',
+        'values.collab.1': 'We collaborate not out of obligation, but from a shared vision.',
+        'values.collab.2': 'Openness and leaving ego at the door are essential.',
+        'values.collab.3': 'We value empathy, positive attitude, and cultural alignment.',
+        'values.collab.4': 'Ego, closed-mindedness, and lack of emotional intelligence disconnect us.',
+        'values.collab.5': 'Our contribution is direction, perspective, and reflection.',
+        'values.curiosity.title': 'Curiosity & Innovation',
+        'values.curiosity.1': 'Intellectual and creative curiosity drives us.',
+        'values.curiosity.2': 'Learning matters more than being right.',
+        'values.curiosity.3': 'Innovation means creating more value \u2014 improving or building something new.',
+        'values.curiosity.4': 'We think in spectrums, not binary answers.',
+        'values.curiosity.5': 'Our mental framework: Why \u2192 What if \u2192 How.',
+        'values.ambition.title': 'Ambition & Freedom',
+        'values.ambition.1': 'Ambition means moving forward and refusing to settle.',
+        'values.ambition.2': 'Freedom is the ability to decide how we use our time and energy.',
+        'values.ambition.3': 'Freedom has limits \u2014 it must not negatively affect others.',
+        'values.ambition.4': 'We pursue growth aligned with our shared vision.',
         'footer': '\u00a9 2026 Saicere Holdings. All rights reserved.'
       },
       es: {
-        'hero.tagline': 'Invirtiendo, construyendo y escalando lo que sigue.',
-        'hero.scroll': '',
+        'hero.mission': 'Perseguir incansablemente la creaci\u00f3n de valor y actuar como catalizador de mejora.',
         'about.label': 'Nosotros',
-        'about.text': 'Saicere Holdings es una empresa tenedora que despliega capital en startups de alto potencial, gestiona activamente un portafolio diversificado de negocios y opera como laboratorio de ventures \u2014 incubando empresas digitales y automatizadas desde el concepto hasta la escala. Nos asociamos con fundadores y equipos que construyen lo que sigue.',
+        'about.text': 'Saicere Holdings despliega capital en venture capital, bienes ra\u00edces y deuda \u2014 gestionando activamente un portafolio diversificado mientras opera un laboratorio de ventures que crea y prueba herramientas, productos y negocios digitales desde cero.',
+        'about.vision.label': 'Visi\u00f3n',
+        'about.vision.text': 'Infraestructura aut\u00f3noma que permita la b\u00fasqueda de la curiosidad y la innovaci\u00f3n.',
         'pillars.label': 'Lo Que Hacemos',
         'pillars.invest.title': 'Inversiones',
-        'pillars.invest.desc': 'Capital semilla y de crecimiento para startups de alto potencial. Respaldamos fundadores ambiciosos que resuelven problemas significativos con tecnolog\u00eda escalable.',
+        'pillars.invest.desc': 'Capital desplegado en venture capital, bienes ra\u00edces y deuda. Perseguimos oportunidades asim\u00e9tricas con un enfoque de largo plazo orientado al valor.',
         'pillars.manage.title': 'Gesti\u00f3n de Portafolio',
-        'pillars.manage.desc': 'Supervisi\u00f3n activa y apoyo estrat\u00e9gico para nuestras empresas de portafolio. Brindamos gu\u00eda operativa, acceso a redes y alineaci\u00f3n a largo plazo para maximizar la creaci\u00f3n de valor.',
+        'pillars.manage.desc': 'Supervisi\u00f3n activa y apoyo estrat\u00e9gico en todas las tenencias. Brindamos gu\u00eda operativa, acceso a redes y alineaci\u00f3n a largo plazo para maximizar la creaci\u00f3n de valor.',
         'pillars.lab.title': 'Laboratorio de Ventures',
-        'pillars.lab.desc': 'Incubando negocios digitales y automatizados desde el concepto hasta el lanzamiento. Identificamos oportunidades, construimos productos y escalamos operaciones \u2014 convirtiendo ideas en empresas.',
+        'pillars.lab.desc': 'Creando y probando herramientas, productos y negocios digitales. Identificamos oportunidades, construimos soluciones automation-first y escalamos operaciones del concepto al lanzamiento.',
+        'values.label': 'Nuestros Valores',
+        'values.purpose.title': 'Prop\u00f3sito y Congruencia',
+        'values.purpose.1': 'El prop\u00f3sito es nuestra direcci\u00f3n y criterio de decisi\u00f3n compartido.',
+        'values.purpose.2': 'Evaluamos si nuestras acciones nos acercan o alejan del objetivo com\u00fan.',
+        'values.purpose.3': 'La congruencia es la coherencia entre nuestros valores, palabras y acciones.',
+        'values.purpose.4': 'La eficiencia sin prop\u00f3sito genera apat\u00eda.',
+        'values.purpose.5': 'No creemos en el "deferred life plan"; preferimos construir una vida alineada desde hoy.',
+        'values.collab.title': 'Colaboraci\u00f3n y Conexi\u00f3n',
+        'values.collab.1': 'Colaboramos no por obligaci\u00f3n, sino por una visi\u00f3n compartida.',
+        'values.collab.2': 'La apertura y dejar el ego en la puerta son esenciales.',
+        'values.collab.3': 'Valoramos la empat\u00eda, la actitud positiva y la alineaci\u00f3n cultural.',
+        'values.collab.4': 'Nos desconecta el ego, la mentalidad cerrada y la falta de inteligencia emocional.',
+        'values.collab.5': 'Nuestro aporte es direcci\u00f3n, perspectiva y reflexi\u00f3n.',
+        'values.curiosity.title': 'Curiosidad e Innovaci\u00f3n',
+        'values.curiosity.1': 'Nos impulsa la curiosidad intelectual y creativa.',
+        'values.curiosity.2': 'Aprender es m\u00e1s importante que tener la raz\u00f3n.',
+        'values.curiosity.3': 'Innovar significa crear m\u00e1s valor \u2014 mejorar o crear algo nuevo.',
+        'values.curiosity.4': 'Pensamos en espectros, no en respuestas binarias.',
+        'values.curiosity.5': 'Nuestro marco mental: Por qu\u00e9 \u2192 Qu\u00e9 pasar\u00eda si \u2192 C\u00f3mo.',
+        'values.ambition.title': 'Ambici\u00f3n y Libertad',
+        'values.ambition.1': 'Ambici\u00f3n se traduce en avanzar y no conformarnos.',
+        'values.ambition.2': 'Libertad es poder decidir c\u00f3mo usamos nuestro tiempo y energ\u00eda.',
+        'values.ambition.3': 'La libertad tiene l\u00edmites: no debe afectar negativamente a otros.',
+        'values.ambition.4': 'Buscamos un crecimiento alineado con nuestra visi\u00f3n compartida.',
         'footer': '\u00a9 2026 Saicere Holdings. Todos los derechos reservados.'
       }
     };
