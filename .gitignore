@@ -1,8 +1,31 @@
 # Ignore everything by default (workspace contains sensitive financial/legal docs)
 *
 
-# Only track the landing page and config
-!index.html
+# Next.js project files
+!app/
+!app/**
+!components/
+!components/**
+!lib/
+!lib/**
+!public/
+!public/**
+
+# Config files
+!package.json
+!package-lock.json
+!next.config.ts
+!tsconfig.json
+!tailwind.config.ts
+!postcss.config.mjs
+!middleware.ts
 !.gitignore
-!.vercel
-!.vercel/**
+!.env.example
+
+# Standard ignores (re-ignore inside allowed dirs)
+node_modules/
+.next/
+.env
+.env.local
+.env.*.local
+.vercel
