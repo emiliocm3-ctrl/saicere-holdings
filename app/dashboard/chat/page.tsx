@@ -165,6 +165,17 @@ function ChatView() {
     [handleSend],
   );
 
+  // Auto-send a prompt when navigated here via ?q= (e.g. Ask Saicere from the
+  // Dashboard). Guarded with a ref so it only fires once per mount even if
+  // history loads async or the component re-renders.
+  useEffect(() => {
+    const q = searchParams.get("q");
+    if (!q || autoSent.current || loadingHistory) return;
+    autoSent.current = true;
+    handleSend(q);
+    router.replace("/dashboard/chat");
+  }, [searchParams, loadingHistory, handleSend, router]);
+
   const { state: voiceState, startRecording, stopRecording } = useVoiceRecorder(
     handleTranscript,
     transcribeVoice,
@@ -284,5 +295,14 @@ function ChatView() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ChatPage() {
+  // useSearchParams requires a Suspense boundary in Next.js App Router.
+  return (
+    <Suspense fallback={null}>
+      <ChatView />
+    </Suspense>
   );
 }

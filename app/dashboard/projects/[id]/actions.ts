@@ -71,7 +71,9 @@ export async function quickAddTask(
       status: "todo",
       source: "manual",
     });
-    if (res.error) return { data: null, error: res.error };
+    if (res.error || !res.data) {
+      return { data: null, error: res.error ?? "Failed to create task" };
+    }
 
     await logActivity({
       event_type: "task_created",

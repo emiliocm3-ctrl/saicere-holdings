@@ -1,9 +1,7 @@
-import { auth } from "@clerk/nextjs/server";
 import { loadDashboard } from "./actions";
 import { DashboardView } from "./components/dashboard-view";
 
 export default async function DashboardPage() {
-  const { userId: _userId } = await auth();
   const result = await loadDashboard();
 
   if (result.error || !result.data) {
