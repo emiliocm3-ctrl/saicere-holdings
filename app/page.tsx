@@ -141,17 +141,14 @@ const i18n = {
 type Lang = keyof typeof i18n;
 
 const pillarIcons = [
-  // Investments
   <svg key="invest" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
     <path d="M12 2L2 7l10 5 10-5-10-5z" />
     <path d="M2 17l10 5 10-5" />
     <path d="M2 12l10 5 10-5" />
   </svg>,
-  // Portfolio Management
   <svg key="manage" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
     <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
   </svg>,
-  // Venture Lab
   <svg key="lab" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
     <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0-4h18" />
   </svg>,
@@ -225,8 +222,8 @@ export default function LandingPage() {
           position: absolute;
           inset: 0;
           background:
-            radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
-            radial-gradient(ellipse 50% 80% at 80% 20%, rgba(201,168,76,0.03) 0%, transparent 60%);
+            radial-gradient(ellipse 80% 60% at 50% 40%, rgba(184,148,47,0.05) 0%, transparent 70%),
+            radial-gradient(ellipse 50% 80% at 80% 20%, rgba(184,148,47,0.03) 0%, transparent 60%);
           pointer-events: none;
         }
         .reveal-section {
@@ -242,16 +239,16 @@ export default function LandingPage() {
           transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
         }
         .pillar-card:hover {
-          border-color: rgba(201,168,76,0.3);
-          box-shadow: 0 0 40px rgba(201,168,76,0.06);
+          border-color: rgba(184,148,47,0.4);
+          box-shadow: 0 4px 24px rgba(184,148,47,0.08);
           transform: translateY(-2px);
         }
         .value-card {
           transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .value-card:hover {
-          border-color: rgba(201,168,76,0.2);
-          box-shadow: 0 0 30px rgba(201,168,76,0.04);
+          border-color: rgba(184,148,47,0.3);
+          box-shadow: 0 4px 20px rgba(184,148,47,0.06);
         }
         .nav-blur {
           backdrop-filter: blur(12px);
@@ -331,7 +328,7 @@ export default function LandingPage() {
       </section>
 
       {/* Pillars */}
-      <section className="py-32 px-6">
+      <section className="py-32 px-6 bg-bg-elevated">
         <div className="max-w-6xl mx-auto">
           <RevealSection>
             <p className="text-xs uppercase tracking-[0.25em] text-accent mb-16 text-center">
@@ -341,7 +338,7 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-3 gap-6">
             {pillarKeys.map((key, i) => (
               <RevealSection key={key} delay={i * 150}>
-                <div className="pillar-card border border-border rounded-2xl p-8 bg-bg-card h-full flex flex-col">
+                <div className="pillar-card border border-border rounded-2xl p-8 bg-bg h-full flex flex-col">
                   <div className="text-accent mb-6">{pillarIcons[i]}</div>
                   <h3 className="text-lg font-medium text-text mb-3">
                     {t.pillars[key].title}
@@ -367,7 +364,7 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-2 gap-6">
             {valueKeys.map((key, i) => (
               <RevealSection key={key} delay={i * 100}>
-                <div className="value-card border border-border rounded-2xl p-8 bg-bg-card h-full">
+                <div className="value-card border border-border rounded-2xl p-8 bg-bg h-full">
                   <h3 className="text-lg font-medium text-text mb-5">
                     {t.values[key].title}
                   </h3>

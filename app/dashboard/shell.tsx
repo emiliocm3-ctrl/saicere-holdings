@@ -2,19 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useCallback } from "react";
 import { UserButton } from "@clerk/nextjs";
 
-const navItems = [
+const tabs = [
   {
-    label: "Briefing",
+    label: "Dashboard",
     href: "/dashboard",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="2" width="6" height="7" rx="1" />
-        <rect x="10" y="2" width="6" height="4" rx="1" />
-        <rect x="2" y="11" width="6" height="5" rx="1" />
-        <rect x="10" y="8" width="6" height="8" rx="1" />
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="9" rx="1.5" />
+        <rect x="12" y="3" width="7" height="5" rx="1.5" />
+        <rect x="12" y="10" width="7" height="9" rx="1.5" />
+        <rect x="3" y="14" width="7" height="5" rx="1.5" />
       </svg>
     ),
   },
@@ -22,27 +21,22 @@ const navItems = [
     label: "Projects",
     href: "/dashboard/projects",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 5.5L2 14a1.5 1.5 0 001.5 1.5h11A1.5 1.5 0 0016 14V7.5a1.5 1.5 0 00-1.5-1.5H9L7.5 4.5H3.5A1.5 1.5 0 002 5.5z" />
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 7.5V17a2 2 0 002 2h12a2 2 0 002-2V9.5a2 2 0 00-2-2h-5.5L10 5.5H5a2 2 0 00-2 2z" />
       </svg>
     ),
   },
   {
-    label: "Search",
-    href: "/dashboard/search",
+    label: "Chat",
+    href: "/dashboard/chat",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="8" cy="8" r="5" />
-        <path d="M15.5 15.5L11.7 11.7" />
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 11a8 8 0 018-8 8 8 0 018 8 8 8 0 01-8 8H3l2.5-2.5" />
+        <path d="M8 11h.01M11 11h.01M14 11h.01" />
       </svg>
     ),
   },
 ];
-
-function isActive(pathname: string, href: string) {
-  if (href === "/dashboard") return pathname === "/dashboard";
-  return pathname.startsWith(href);
-}
 
 export default function DashboardShell({
   children,
@@ -50,100 +44,48 @@ export default function DashboardShell({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const closeSidebar = useCallback(() => setSidebarOpen(false), []);
+  function isActive(href: string) {
+    if (href === "/dashboard") return pathname === "/dashboard";
+    return pathname.startsWith(href);
+  }
 
   return (
-    <div className="flex h-dvh overflow-hidden bg-bg">
-      {/* Mobile overlay */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
-          onClick={closeSidebar}
-          aria-hidden
+    <div className="flex h-dvh flex-col overflow-hidden bg-bg">
+      <header className="flex h-12 shrink-0 items-center justify-between border-b border-border px-4">
+        <span className="text-[15px] font-semibold tracking-wide text-text">
+          Saicere
+        </span>
+        <UserButton
+          appearance={{
+            elements: {
+              avatarBox: "w-7 h-7",
+            },
+          }}
         />
-      )}
+      </header>
 
-      {/* Sidebar */}
-      <aside
-        className={`
-          fixed inset-y-0 left-0 z-50 flex w-60 flex-col border-r border-border bg-bg-elevated
-          transition-transform duration-200 ease-out
-          lg:static lg:translate-x-0
-          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-        `}
-      >
-        {/* Logo */}
-        <div className="flex h-14 items-center px-5">
-          <Link
-            href="/dashboard"
-            className="text-[15px] font-semibold tracking-wide text-text"
-            onClick={closeSidebar}
-          >
-            Saicere
-          </Link>
-        </div>
+      <main className="flex-1 overflow-hidden">{children}</main>
 
-        {/* Nav */}
-        <nav className="flex-1 space-y-0.5 px-3 pt-2">
-          {navItems.map((item) => {
-            const active = isActive(pathname, item.href);
+      <nav className="shrink-0 border-t border-border bg-bg/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
+        <div className="mx-auto flex max-w-md">
+          {tabs.map((tab) => {
+            const active = isActive(tab.href);
             return (
               <Link
-                key={item.href}
-                href={item.href}
-                onClick={closeSidebar}
-                className={`
-                  flex items-center gap-3 rounded-lg px-3 py-2 text-[13px] font-medium transition-colors
-                  ${
-                    active
-                      ? "bg-accent-dim text-accent"
-                      : "text-text-muted hover:bg-accent-glow hover:text-text"
-                  }
-                `}
+                key={tab.href}
+                href={tab.href}
+                className={`flex flex-1 flex-col items-center gap-0.5 py-2 text-[10px] font-medium transition-colors ${
+                  active ? "text-accent" : "text-text-dim hover:text-text-muted"
+                }`}
               >
-                {item.icon}
-                {item.label}
+                <span className={active ? "text-accent" : "text-text-dim"}>{tab.icon}</span>
+                {tab.label}
               </Link>
             );
           })}
-        </nav>
-
-        {/* User */}
-        <div className="border-t border-border px-5 py-4">
-          <UserButton
-            appearance={{
-              elements: {
-                avatarBox: "w-7 h-7",
-              },
-            }}
-          />
         </div>
-      </aside>
-
-      {/* Main */}
-      <div className="flex flex-1 flex-col overflow-hidden">
-        {/* Mobile header */}
-        <header className="flex h-14 shrink-0 items-center border-b border-border px-4 lg:hidden">
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="rounded-md p-1.5 text-text-muted hover:bg-accent-glow hover:text-text"
-            aria-label="Open sidebar"
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-              <path d="M3 5h14M3 10h14M3 15h14" />
-            </svg>
-          </button>
-          <span className="ml-3 text-[15px] font-semibold tracking-wide text-text">
-            Saicere
-          </span>
-        </header>
-
-        <main className="flex-1 overflow-y-auto p-6 lg:p-8">
-          {children}
-        </main>
-      </div>
+      </nav>
     </div>
   );
 }

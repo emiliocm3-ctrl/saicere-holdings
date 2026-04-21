@@ -1,18 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #09090b;
-  --color-bg-elevated: #131316;
-  --color-bg-card: #0f0f12;
-  --color-border: #1e1e22;
-  --color-border-subtle: #16161a;
-  --color-text: #f0f0f0;
-  --color-text-muted: #8a8a8e;
-  --color-text-dim: #5a5a5e;
-  --color-accent: #c9a84c;
-  --color-accent-dim: rgba(201, 168, 76, 0.12);
-  --color-accent-glow: rgba(201, 168, 76, 0.06);
+  --color-bg: #ffffff;
+  --color-bg-elevated: #f8f9fa;
+  --color-bg-card: #f3f4f6;
+  --color-border: #e5e7eb;
+  --color-border-subtle: #f0f0f0;
+  --color-text: #111827;
+  --color-text-muted: #6b7280;
+  --color-text-dim: #9ca3af;
+  --color-accent: #b8942f;
+  --color-accent-dim: rgba(184, 148, 47, 0.08);
+  --color-accent-glow: rgba(184, 148, 47, 0.04);
   --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Project status gradients */
+  --grad-active-from: #10b981;
+  --grad-active-to: #14b8a6;
+  --grad-paused-from: #f59e0b;
+  --grad-paused-to: #eab308;
+  --grad-completed-from: #6366f1;
+  --grad-completed-to: #3b82f6;
+  --grad-archived-from: #94a3b8;
+  --grad-archived-to: #64748b;
+
+  /* Task status gradients */
+  --grad-backlog-from: #94a3b8;
+  --grad-backlog-to: #cbd5e1;
+  --grad-todo-from: #0ea5e9;
+  --grad-todo-to: #38bdf8;
+  --grad-progress-from: #f59e0b;
+  --grad-progress-to: #fb923c;
+  --grad-review-from: #8b5cf6;
+  --grad-review-to: #a855f7;
+  --grad-done-from: #10b981;
+  --grad-done-to: #34d399;
+
+  /* Priority / urgency glow */
+  --glow-urgent: 0 0 0 1px rgba(239, 68, 68, 0.35), 0 4px 20px rgba(239, 68, 68, 0.15);
+  --glow-high: 0 0 0 1px rgba(249, 115, 22, 0.25);
 }
 
 html {
@@ -24,4 +50,30 @@ body {
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes sheet-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sheet-slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.sheet-backdrop {
+  animation: sheet-fade 150ms ease-out both;
+}
+
+.sheet-panel {
+  animation: sheet-slide-up 220ms cubic-bezier(0.2, 0.8, 0.25, 1) both;
 }

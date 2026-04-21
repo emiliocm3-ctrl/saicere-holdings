@@ -10,18 +10,18 @@ export default function GlobalError({
   return (
     <div
       className="flex min-h-screen items-center justify-center px-4"
-      style={{ backgroundColor: "#09090b", color: "#f0f0f0", fontFamily: "Inter, system-ui, sans-serif" }}
+      style={{ backgroundColor: "#ffffff", color: "#111827", fontFamily: "Inter, system-ui, sans-serif" }}
     >
       <div
         className="max-w-md rounded-xl border p-8 text-center"
-        style={{ borderColor: "#1e1e22", backgroundColor: "#131316" }}
+        style={{ borderColor: "#e5e7eb", backgroundColor: "#f8f9fa" }}
       >
         <h2 className="mb-3 text-lg font-medium">Something went wrong</h2>
-        <p className="mb-2 text-sm" style={{ color: "#8a8a8e" }}>
+        <p className="mb-2 text-sm" style={{ color: "#6b7280" }}>
           {error.message || "An unexpected error occurred."}
         </p>
         {error.digest && (
-          <p className="mb-4 text-xs" style={{ color: "#5a5a5e" }}>
+          <p className="mb-4 text-xs" style={{ color: "#9ca3af" }}>
             Digest: {error.digest}
           </p>
         )}
@@ -29,14 +29,14 @@ export default function GlobalError({
           <button
             onClick={reset}
             className="rounded-lg px-4 py-2 text-sm font-medium"
-            style={{ backgroundColor: "#c9a84c", color: "#09090b" }}
+            style={{ backgroundColor: "#b8942f", color: "#ffffff" }}
           >
             Try again
           </button>
           <a
             href="/"
             className="rounded-lg border px-4 py-2 text-sm"
-            style={{ borderColor: "#1e1e22", color: "#8a8a8e" }}
+            style={{ borderColor: "#e5e7eb", color: "#6b7280" }}
           >
             Go home
           </a>

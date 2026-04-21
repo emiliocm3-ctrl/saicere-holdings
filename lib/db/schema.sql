@@ -66,6 +66,15 @@ create table if not exists briefings (
   created_at      timestamptz not null default now()
 );
 
+create table if not exists chat_messages (
+  id          uuid primary key default gen_random_uuid(),
+  user_id     text not null,
+  role        text not null check (role in ('user', 'assistant')),
+  content     text not null,
+  rich_cards  jsonb,
+  created_at  timestamptz not null default now()
+);
+
 create table if not exists integration_configs (
   id          uuid primary key default gen_random_uuid(),
   provider    text not null unique,
@@ -84,6 +93,7 @@ create index if not exists idx_tasks_status         on tasks(status);
 create index if not exists idx_activity_project_id  on activity_log(project_id);
 create index if not exists idx_activity_created_at  on activity_log(created_at);
 create index if not exists idx_briefings_date       on briefings(date);
+create index if not exists idx_chat_messages_user   on chat_messages(user_id, created_at);
 
 -- -------------------------------------------------------
 -- Auto-update updated_at trigger

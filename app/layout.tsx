@@ -1,12 +1,25 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
 import "./globals.css";
+import { ServiceWorkerRegister } from "./sw-register";
 
 export const metadata: Metadata = {
-  title: "Saicere Holdings",
-  description:
-    "To relentlessly pursue value creation and act as a catalyst for improvement.",
+  title: "Saicere",
+  description: "Executive assistant for Saicere Holdings ventures",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Saicere",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#ffffff",
 };
 
 const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
@@ -30,8 +43,14 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        <link rel="apple-touch-icon" href="/icon-192.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
       </head>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <ServiceWorkerRegister />
+        {children}
+      </body>
     </html>
   );
 
@@ -43,12 +62,11 @@ export default function RootLayout({
       signUpUrl="/sign-up"
       afterSignOutUrl="/"
       appearance={{
-        baseTheme: dark,
         variables: {
-          colorPrimary: "#c9a84c",
-          colorBackground: "#131316",
-          colorInputBackground: "#09090b",
-          colorText: "#f0f0f0",
+          colorPrimary: "#b8942f",
+          colorBackground: "#ffffff",
+          colorInputBackground: "#f8f9fa",
+          colorText: "#111827",
         },
       }}
     >

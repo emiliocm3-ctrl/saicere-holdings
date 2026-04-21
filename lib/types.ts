@@ -74,3 +74,46 @@ export interface Briefing {
   next_steps: string[];
   created_at: string;
 }
+
+export interface ChatMessage {
+  id: string;
+  user_id: string;
+  role: "user" | "assistant";
+  content: string;
+  rich_cards: RichCard[] | null;
+  created_at: string;
+}
+
+export type RichCardType = "briefing" | "task_list" | "project_card" | "confirmation";
+
+export interface RichCard {
+  type: RichCardType;
+  data: Record<string, unknown>;
+}
+
+export interface ProjectWithAggregate extends Project {
+  taskCounts: Record<TaskStatus, number>;
+  totalTasks: number;
+  doneTasks: number;
+  hasUrgent: boolean;
+  hasBlocker: boolean;
+}
+
+export interface AttentionTask extends Task {
+  project_name: string;
+}
+
+export interface DashboardStats {
+  activeProjects: number;
+  inProgressTasks: number;
+  blockersThisWeek: number;
+  doneThisWeek: number;
+}
+
+export interface DashboardSnapshot {
+  projects: ProjectWithAggregate[];
+  attention: AttentionTask[];
+  stats: DashboardStats;
+  recentActivity: ActivityLog[];
+  todaysBriefing: Briefing | null;
+}

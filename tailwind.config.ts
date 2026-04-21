@@ -6,23 +6,23 @@ const config: Config = {
     extend: {
       colors: {
         bg: {
-          DEFAULT: "#09090b",
-          elevated: "#131316",
-          card: "#0f0f12",
+          DEFAULT: "#ffffff",
+          elevated: "#f8f9fa",
+          card: "#f3f4f6",
         },
         border: {
-          DEFAULT: "#1e1e22",
-          subtle: "#16161a",
+          DEFAULT: "#e5e7eb",
+          subtle: "#f0f0f0",
         },
         text: {
-          DEFAULT: "#f0f0f0",
-          muted: "#8a8a8e",
-          dim: "#5a5a5e",
+          DEFAULT: "#111827",
+          muted: "#6b7280",
+          dim: "#9ca3af",
         },
         accent: {
-          DEFAULT: "#c9a84c",
-          dim: "rgba(201, 168, 76, 0.12)",
-          glow: "rgba(201, 168, 76, 0.06)",
+          DEFAULT: "#b8942f",
+          dim: "rgba(184, 148, 47, 0.08)",
+          glow: "rgba(184, 148, 47, 0.04)",
         },
       },
       fontFamily: {
