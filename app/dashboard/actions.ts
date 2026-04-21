@@ -132,19 +132,6 @@ export async function loadDashboard(): Promise<{
   return { data: result.data, error: null };
 }
 
-const TASK_STATUS_CYCLE: TaskStatus[] = [
-  "backlog",
-  "todo",
-  "in_progress",
-  "review",
-  "done",
-];
-
-export function nextTaskStatus(current: TaskStatus): TaskStatus {
-  const idx = TASK_STATUS_CYCLE.indexOf(current);
-  return TASK_STATUS_CYCLE[(idx + 1) % TASK_STATUS_CYCLE.length];
-}
-
 function revalidateProjectSurfaces() {
   revalidatePath("/dashboard");
   revalidatePath("/dashboard/projects");

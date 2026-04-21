@@ -12,11 +12,8 @@ import type {
   TaskStatus,
 } from "@/lib/types";
 import { StatusCard, StatusDot } from "./status-card";
-import {
-  advanceTaskStatus,
-  generateTodayBriefing,
-  nextTaskStatus,
-} from "../actions";
+import { advanceTaskStatus, generateTodayBriefing } from "../actions";
+import { nextTaskStatus } from "../task-status";
 
 const TASK_STATUS_LABEL: Record<TaskStatus, string> = {
   backlog: "Backlog",

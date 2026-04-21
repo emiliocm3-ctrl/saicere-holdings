@@ -19,9 +19,9 @@ import { StatusCard } from "../../components/status-card";
 import {
   advanceTaskStatus,
   cycleProjectStatus,
-  nextTaskStatus,
   updateProjectFields,
 } from "../../actions";
+import { nextTaskStatus } from "../../task-status";
 import {
   deleteTask as deleteTaskAction,
   logBlocker,
