@@ -12,6 +12,9 @@
   --color-accent: #b8942f;
   --color-accent-dim: rgba(184, 148, 47, 0.08);
   --color-accent-glow: rgba(184, 148, 47, 0.04);
+  --color-interaction: #2563eb;
+  --color-interaction-dim: rgba(37, 99, 235, 0.08);
+  --color-interaction-glow: rgba(37, 99, 235, 0.18);
   --font-sans: "Inter", system-ui, sans-serif;
 
   /* Project status gradients */

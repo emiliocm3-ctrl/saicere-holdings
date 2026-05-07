@@ -239,20 +239,50 @@ export default function LandingPage() {
           transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
         }
         .pillar-card:hover {
-          border-color: rgba(184,148,47,0.4);
-          box-shadow: 0 4px 24px rgba(184,148,47,0.08);
+          border-color: rgba(37,99,235,0.45);
+          box-shadow: 0 4px 24px rgba(37,99,235,0.10);
           transform: translateY(-2px);
         }
         .value-card {
           transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .value-card:hover {
-          border-color: rgba(184,148,47,0.3);
-          box-shadow: 0 4px 20px rgba(184,148,47,0.06);
+          border-color: rgba(37,99,235,0.35);
+          box-shadow: 0 4px 20px rgba(37,99,235,0.08);
         }
         .nav-blur {
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes hero-focus {
+          from {
+            opacity: 0;
+            filter: blur(14px);
+            transform: scale(0.94);
+          }
+          to {
+            opacity: 1;
+            filter: blur(0);
+            transform: scale(1);
+          }
+        }
+        @keyframes hero-soft-focus {
+          from { opacity: 0; filter: blur(8px); transform: translateY(8px); }
+          to   { opacity: 1; filter: blur(0);   transform: translateY(0); }
+        }
+        .hero-wordmark {
+          animation: hero-focus 1100ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+        }
+        .hero-mission {
+          animation: hero-soft-focus 900ms cubic-bezier(0.22, 1, 0.36, 1) 620ms both;
+        }
+        .hero-divider {
+          animation: hero-soft-focus 700ms ease-out 1100ms both;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-wordmark,
+          .hero-mission,
+          .hero-divider { animation: none; }
         }
       `}</style>
 
@@ -265,13 +295,13 @@ export default function LandingPage() {
           <div className="flex items-center gap-3">
             <Link
               href="/sign-in"
-              className="px-4 py-1.5 text-sm text-text-muted border border-border rounded-md hover:text-accent hover:border-accent/40 transition-colors"
+              className="px-4 py-1.5 text-sm text-text-muted border border-border rounded-md hover:text-interaction hover:border-interaction/40 transition-colors"
             >
               {t.signIn}
             </Link>
             <button
               onClick={toggleLang}
-              className="px-3 py-1.5 text-sm text-text-muted border border-border rounded-md hover:text-accent hover:border-accent/40 transition-colors cursor-pointer"
+              className="px-3 py-1.5 text-sm text-text-muted border border-border rounded-md hover:text-interaction hover:border-interaction/40 transition-colors cursor-pointer"
               aria-label="Toggle language"
             >
               {lang === "en" ? "ES" : "EN"}
@@ -283,21 +313,15 @@ export default function LandingPage() {
       {/* Hero */}
       <section className="hero-section">
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <RevealSection>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight text-text">
-              Saicere<span className="text-accent">.</span>
-            </h1>
-          </RevealSection>
-          <RevealSection delay={200}>
-            <p className="mt-8 text-lg md:text-xl text-text-muted font-light leading-relaxed max-w-2xl mx-auto">
-              {t.hero.mission}
-            </p>
-          </RevealSection>
-          <RevealSection delay={400}>
-            <div className="mt-12 flex justify-center">
-              <div className="w-px h-16 bg-gradient-to-b from-accent/40 to-transparent" />
-            </div>
-          </RevealSection>
+          <h1 className="hero-wordmark text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight text-text">
+            Saicere<span className="text-accent">.</span>
+          </h1>
+          <p className="hero-mission mt-8 text-lg md:text-xl text-text-muted font-light leading-relaxed max-w-2xl mx-auto">
+            {t.hero.mission}
+          </p>
+          <div className="hero-divider mt-12 flex justify-center">
+            <div className="w-px h-16 bg-gradient-to-b from-accent/40 to-transparent" />
+          </div>
         </div>
       </section>
 
