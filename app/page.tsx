@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 const i18n = {
@@ -270,16 +271,45 @@ export default function LandingPage() {
           from { opacity: 0; filter: blur(8px); transform: translateY(8px); }
           to   { opacity: 1; filter: blur(0);   transform: translateY(0); }
         }
+        .hero-logo {
+          animation: hero-focus 1200ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
+        }
         .hero-wordmark {
-          animation: hero-focus 1100ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+          animation: hero-soft-focus 900ms cubic-bezier(0.22, 1, 0.36, 1) 700ms both;
         }
         .hero-mission {
-          animation: hero-soft-focus 900ms cubic-bezier(0.22, 1, 0.36, 1) 620ms both;
+          animation: hero-soft-focus 900ms cubic-bezier(0.22, 1, 0.36, 1) 1100ms both;
         }
         .hero-divider {
-          animation: hero-soft-focus 700ms ease-out 1100ms both;
+          animation: hero-soft-focus 700ms ease-out 1500ms both;
+        }
+        .brand-mark {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+        }
+        .brand-mark .brand-text {
+          transition: opacity 0.3s ease;
+        }
+        .brand-mark .brand-logo {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+        }
+        .brand-mark:hover .brand-text,
+        .brand-mark:focus-visible .brand-text {
+          opacity: 0;
+        }
+        .brand-mark:hover .brand-logo,
+        .brand-mark:focus-visible .brand-logo {
+          opacity: 1;
         }
         @media (prefers-reduced-motion: reduce) {
+          .hero-logo,
           .hero-wordmark,
           .hero-mission,
           .hero-divider { animation: none; }
@@ -289,8 +319,23 @@ export default function LandingPage() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 nav-blur bg-bg/80 border-b border-border-subtle">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-text font-semibold tracking-wide text-sm uppercase">
-            Saicere
+          <span
+            className="brand-mark cursor-default outline-none"
+            tabIndex={0}
+            aria-label="Saicere"
+          >
+            <span className="brand-text text-text font-semibold tracking-wide text-sm uppercase">
+              Saicere
+            </span>
+            <Image
+              src="/isotipo.png"
+              alt=""
+              aria-hidden="true"
+              width={48}
+              height={48}
+              priority
+              className="brand-logo h-6 w-6"
+            />
           </span>
           <div className="flex items-center gap-3">
             <Link
@@ -313,6 +358,14 @@ export default function LandingPage() {
       {/* Hero */}
       <section className="hero-section">
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+          <Image
+            src="/isotipo.png"
+            alt="Saicere"
+            width={256}
+            height={256}
+            priority
+            className="hero-logo mx-auto mb-8 h-24 w-24 md:h-32 md:w-32"
+          />
           <h1 className="hero-wordmark text-4xl md:text-5xl lg:text-6xl font-light leading-tight tracking-tight text-text">
             Saicere<span className="text-accent">.</span>
           </h1>
